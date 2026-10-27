@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pipi — pee reminder</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💧</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="blob blob-a" aria-hidden="true"></div>
+    <div class="blob blob-b" aria-hidden="true"></div>
+
+    <main class="shell">
+      <header class="brand">
+        <span class="mark" aria-hidden="true">💧</span>
+        <div>
+          <p class="eyebrow">Pipi</p>
+          <h1>Time to pee reminder</h1>
+        </div>
+      </header>
+
+      <section class="card" id="setup">
+        <p class="lede">
+          Set how often you want a nudge. When it fires, a looping
+          <em>suuu suuuu suuuu</em> plays for 30 seconds so you actually get up.
+        </p>
+
+        <label class="field">
+          <span>Remind me every</span>
+          <div class="pills" role="group" aria-label="Reminder interval">
+            <button type="button" class="pill" data-minutes="15">15 min</button>
+            <button type="button" class="pill is-on" data-minutes="30">30 min</button>
+            <button type="button" class="pill" data-minutes="45">45 min</button>
+            <button type="button" class="pill" data-minutes="60">1 hour</button>
+          </div>
+        </label>
+
+        <label class="field custom">
+          <span>Or custom minutes</span>
+          <input id="custom-minutes" type="number" min="1" max="180" placeholder="e.g. 20" />
+        </label>
+
+        <div class="actions">
+          <button type="button" class="btn primary" id="start-btn">Start reminder</button>
+          <button type="button" class="btn ghost" id="preview-btn">Preview suuu suuuu suuuu</button>
+        </div>
+        <p class="hint" id="hint">Sound starts only after you tap a button (browser rule).</p>
+      </section>
+
+      <section class="card waiting is-hidden" id="waiting" hidden>
+        <p class="status-label">Next pee nudge in</p>
+        <p class="clock" id="countdown">00:00</p>
+        <div class="track" aria-hidden="true">
+          <div class="fill" id="wait-fill"></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn primary" id="now-btn">Remind me now</button>
+          <button type="button" class="btn ghost" id="stop-btn">Stop</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="overlay is-hidden" id="overlay" hidden>
+      <div class="stream" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="alert">
+        <p class="alert-kicker">Pipi says</p>
+        <h2>Go pee.</h2>
+        <p class="shuu" id="shuu-text">suuu suuuu suuuu</p>
+        <p class="sound-meta">Sound: <span id="sound-left">30</span>s left</p>
+        <div class="track loud">
+          <div class="fill" id="sound-fill"></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn primary" id="peed-btn">I peed</button>
+          <button type="button" class="btn ghost" id="mute-btn">Stop sound</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
